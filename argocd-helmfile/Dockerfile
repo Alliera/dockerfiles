@@ -1,7 +1,7 @@
 FROM argoproj/argocd:v2.0.2
 
 LABEL version="2.0.2-0.139.7"
-LABEL maintainer="shinya@chatwork.com"
+LABEL maintainer="vasily.korytov@sandsiv.com"
 
 # Switch to root for the ability to perform install
 USER root
@@ -39,6 +39,8 @@ RUN apt-get update && \
     chmod +x /usr/local/bin/helm && \
     chmod +x /usr/local/bin/helmfile && \
     chmod +x /usr/local/bin/sops
+
+ADD argo-cd-helmfile.sh /usr/local/bin/
 
 # Switch back to non-root user
 USER argocd
