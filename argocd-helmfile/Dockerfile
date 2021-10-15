@@ -1,18 +1,19 @@
-FROM argoproj/argocd:v2.0.2
+FROM argoproj/argocd:v2.1.3
 
-LABEL version="2.0.2-0.139.7"
+LABEL version="2.1.3-0.139.9"
 LABEL maintainer="vasily.korytov@sandsiv.com"
 
 # Switch to root for the ability to perform install
 USER root
 
-ARG HELMFILE_VERSION=v0.139.7
-ARG HELM_VERSION=v3.5.4
+ARG HELMFILE_VERSION=v0.139.9
+ARG HELM_VERSION=v3.6.3
 ARG HELM_LOCATION="https://get.helm.sh"
 ARG HELM_FILENAME="helm-${HELM_VERSION}-linux-amd64.tar.gz"
-ARG KUBECTL_VERSION=1.18.10
+ARG KUBECTL_VERSION=1.19.13
 ARG SOPS_VERSION=v3.7.1
 ARG HELM_DIFF_VERSION=3.1.3
+ARG HELM_SECRETS_VERSION=3.8.2
 
 # Install tools needed for your repo-server to retrieve & decrypt secrets, render manifests
 # (e.g. curl, awscli, gpg, sops)
@@ -45,8 +46,4 @@ ADD argo-cd-helmfile.sh /usr/local/bin/
 USER argocd
 
 RUN helm plugin install https://github.com/databus23/helm-diff --version v${HELM_DIFF_VERSION} && \
-    helm plugin install https://github.com/Alliera/helm-secrets && \
-    helm plugin install https://github.com/hypnoglow/helm-s3.git && \
-    helm plugin install https://github.com/mumoshu/helm-x  && \
-    helm plugin install https://github.com/aslafy-z/helm-git.git
-
+    helm plugin install https://github.com/jkroepke/helm-secrets --version v{HELM_SECRETS_VERSION}
