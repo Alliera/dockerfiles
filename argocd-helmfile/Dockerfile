@@ -46,4 +46,4 @@ ADD argo-cd-helmfile.sh /usr/local/bin/
 USER argocd
 
 RUN helm plugin install https://github.com/databus23/helm-diff --version v${HELM_DIFF_VERSION} && \
-    helm plugin install https://github.com/jkroepke/helm-secrets --version v{HELM_SECRETS_VERSION}
+    helm plugin install https://github.com/jkroepke/helm-secrets --version v${HELM_SECRETS_VERSION}
