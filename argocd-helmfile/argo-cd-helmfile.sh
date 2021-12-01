@@ -188,6 +188,14 @@ case $phase in
       export HELMFILE_HELM3="1"
     fi
 
+    if [ ! -d ~/.local/share/helm/plugins/helm-diff ]; then
+      ${helm} plugin install https://github.com/databus23/helm-diff --version v3.1.3
+    fi
+
+    if [ ! -d ~/.local/share/helm/plugins/helm-secrets ]; then
+      ${helm} plugin install https://github.com/jkroepke/helm-secrets --version v3.8.2
+    fi
+
     if [ ! -z "${HELMFILE_INIT_SCRIPT_FILE}" ]; then
       HELMFILE_INIT_SCRIPT_FILE=$(realpath "${HELMFILE_INIT_SCRIPT_FILE}")
       bash "${HELMFILE_INIT_SCRIPT_FILE}"
