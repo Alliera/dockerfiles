@@ -188,11 +188,11 @@ case $phase in
       export HELMFILE_HELM3="1"
     fi
 
-    if [ ! -d ${HELM_PLUGINS}/helm-diff ]; then
+    if [ ! -d ${HELM_PLUGINS}helm-diff ]; then
       ${helm} plugin install https://github.com/databus23/helm-diff --version v3.1.3
     fi
 
-    if [ ! -d ${HELM_PLUGINS}/helm-secrets ]; then
+    if [ ! -d ${HELM_PLUGINS}helm-secrets ]; then
       ${helm} plugin install https://github.com/jkroepke/helm-secrets --version v3.8.2
     fi
 
