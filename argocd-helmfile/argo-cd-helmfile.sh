@@ -83,6 +83,7 @@ phase=$1
 # HELM_HOME is deprecated with helm-v3, uses XDG dirs
 export HELM_HOME="/tmp/__${SCRIPT_NAME}__/apps/${ARGOCD_APP_NAME}"
 export HELMFILE_HELMFILE_HELMFILED="${PWD}/.__${SCRIPT_NAME}__helmfile.d"
+export HELMFILE_UPGRADE_NOTICE_DISABLED=1
 
 if [[ ! -d "/tmp/__${SCRIPT_NAME}__/bin" ]]; then
   mkdir -p "/tmp/__${SCRIPT_NAME}__/bin"
